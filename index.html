@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f3f2eb"><title>Botanical Apparatus — 植物制香</title><meta name="description" content="一座随风而动的植物园，一段玻璃中的气味想象。"><link rel="preload" href="assets/hero-observe.png" as="image"><link rel="preload" href="assets/title-stitched.png" as="image"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="revision.css"><link rel="stylesheet" href="stage-five.css"><link rel="stylesheet" href="stage-six.css"><link rel="stylesheet" href="stage-seven.css"><link rel="stylesheet" href="stage-eight.css"><link rel="stylesheet" href="dream.css"><link rel="stylesheet" href="responsive.css"></head>
+<body><main id="app" data-phase="observe" data-version="v10-dream">
+<header><a class="brand" href="./" aria-label="重新开始">Botanical Apparatus<span>植物制香 · 交互装置</span></a><div class="edition">AN OLFACTORY STUDY<br><span>FOR A MORE TENDER WORLD</span></div></header>
+<section class="editorial"><div class="eyebrow" id="chapter">01 / OBSERVE</div><h1 id="title"></h1><p id="intro">一阵微风，一座悬浮的植物园。<br>轻轻拨动，让气味的想象开始流转。</p><div class="hairline"></div><span class="caption" id="instruction">按住装置，左右拨动</span><div id="breeze-note" aria-hidden="true"><span></span> A SMALL BREEZE PASSES</div></section>
+<div id="viewport" aria-label="植物风铃交互场景"><div id="world"><div id="mobile"><svg id="rig" viewBox="0 0 640 700" aria-hidden="true"></svg><div id="pendants"></div><div id="moth" aria-hidden="true"></div></div><div id="apparatus"></div></div></div>
+<div class="quiet-note">Collected by<br>the breeze.<small>AN IMAGINED HERBARIUM</small></div>
+<svg class="bow" viewBox="-5 -5 72 50" aria-hidden="true"><path class="bow-shadow" d="M29 15C-5 -6 1 31 29 15C64 -6 64 30 29 15M29 15Q21 29 14 36M29 15Q35 27 42 36"/><path d="M29 15C-5 -6 1 31 29 15C64 -6 64 30 29 15M29 15Q21 29 14 36M29 15Q35 27 42 36"/></svg>
+<div id="specimen-label" role="status"></div><div id="drag-layer"></div><div id="hand" aria-hidden="true"><img src="assets/hand.png" alt=""></div>
+<aside id="vessel-caption"><span>Gathered here</span><i>让植物穿过瓶口，留下一份气味。</i><div id="count" aria-live="polite">00 / 08 SPECIMENS</div><div class="tools"><button id="undo">撤回一份</button><button id="clear">重新采集</button></div></aside>
+<aside id="process-panel" hidden><div class="process-heading"><span id="process-label" role="status" aria-live="polite">准备开始</span><span id="process-time">00 / 16 SEC</span></div><progress id="distill-progress" max="1" value="0" aria-label="制香进度"></progress><div class="process-stages"><span>浸润</span><span>加热</span><span>冷凝</span><span>凝结</span></div><button id="replay" hidden>↺ 再看一次制香过程</button></aside>
+<aside id="scent-result" hidden><span class="eyebrow">YOUR BOTANICAL COMPOSITION</span><strong id="scent-name"></strong><p id="scent-notes"></p><span id="release-count">按住并松开黑色气囊，让想象缓缓舒展。</span></aside>
+<footer><div class="footnote"><span class="dot"></span> A STUDY IN SCENT & SENTIMENT<span class="sub" id="foot-sub">植物、器物，与不可见之物</span></div><div id="progress"><b>01</b><span></span><i>02</i><span></span><i>03</i></div><div class="footer-actions"><button class="text-action" id="back" hidden>← 返回采集</button><button class="primary" id="begin">开始采集 · BEGIN <span>↗</span></button><button class="primary" id="distill" aria-disabled="true" hidden>开始制香 · DISTILL <span>→</span></button><button class="primary" id="proceed" hidden>进入第四幕 · 闻香 <span>→</span></button><button class="primary" id="restart" hidden>再做一份 · COMPOSE AGAIN <span>↺</span></button></div></footer>
+<div id="toast" role="status"></div><button id="sound" aria-label="关闭背景音乐" aria-pressed="true">MUSIC ON <span>⌁</span></button>
+</main><script type="module" src="app.js"></script></body></html>
+
+
+
+
+
+
+

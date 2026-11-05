@@ -1,0 +1,50 @@
+/* V10 composition stays intact; themes sit behind the physical installation. */
+:root{--dream-ink:#7c8074;--dream-edge:#e8e9e4;--dream-panel:#fffdf6d9;--dream-line:#aaa597}
+body{background:var(--dream-edge)}
+#app{background:var(--dream-edge);color:var(--dream-ink)}
+#dream-space{position:absolute;inset:12px;z-index:0;pointer-events:none;overflow:hidden;opacity:0;transition:opacity .7s;background:radial-gradient(ellipse at 72% 34%,#fff8fc 0,transparent 48%),radial-gradient(ellipse at 14% 85%,#e1e6f0 0,transparent 58%),linear-gradient(120deg,#f8f2f2,#eee8ef 65%,#e4e8f0)}
+#dream-space:before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 0 34%,#ffffff63 34.2%,#fff9 35%,transparent 62%),radial-gradient(ellipse at 64% 82%,#a99cad25,transparent 40%);filter:blur(10px)}
+#dream-space:after{content:'';position:absolute;width:76%;height:38%;left:32%;top:64%;border-radius:50%;background:radial-gradient(ellipse,#fff7fc90,transparent 68%);filter:blur(18px);transform:rotate(-10deg)}
+#dream-glitter{position:absolute;inset:0;width:100%;height:100%;z-index:25;pointer-events:none}
+#theme-picker{position:absolute;right:24%;top:3%;z-index:8;display:flex;align-items:center;gap:9px;padding:7px 11px;border:1px solid var(--dream-line);border-radius:30px;background:var(--dream-panel);box-shadow:0 3px 14px #5e526908;font-size:10px;letter-spacing:1px;color:var(--dream-ink);backdrop-filter:blur(12px)}
+#theme-picker>span{margin:0 4px 0 1px;opacity:.8}
+.theme-swatch{position:relative;display:flex;align-items:center;justify-content:center;width:24px;height:24px;padding:0;border-radius:50%;border:1px solid #a49cac60;box-shadow:inset 0 0 0 2px #ffffff55;transition:transform .2s}
+.theme-swatch:hover{transform:scale(1.14)}
+.theme-swatch[aria-pressed=true]:after{content:'';position:absolute;inset:-4px;border:1px solid currentColor;border-radius:50%}
+.theme-swatch[data-theme=white]{background:#fff}
+.theme-swatch[data-theme=space]{background:linear-gradient(135deg,#f3dce6,#f4f0ed 45%,#c8d9eb)}
+.theme-swatch[data-theme=night]{background:linear-gradient(135deg,#252634,#62516c)}
+#theme-name{min-width:52px;text-align:center;font-size:10px}
+#app[data-theme=white] #paper-tone stop{stop-color:#fff}
+#app[data-theme=white] #paper-ground .fibers{opacity:.015}
+#app[data-theme=white]:after{opacity:.045}
+#app[data-theme=space] #dream-space,#app[data-theme=night] #dream-space{opacity:1}
+#app[data-theme=space] #paper-ground .sheet{fill:#f8f4f5}
+#app[data-theme=space] #paper-ground .fibers{opacity:.025}
+#app[data-theme=space]:after{opacity:.065}
+#app[data-theme=night]{--dream-ink:#e3dce7;--dream-panel:#282637d9;--dream-line:#9c8da55c;--dream-edge:#1c1d27}
+body:has(#app[data-theme=night]){background:#1c1d27}
+#app[data-theme=night] #paper-ground .sheet{fill:#252331}
+#app[data-theme=night] #paper-ground .edge{stroke:#95839c;opacity:.3}
+#app[data-theme=night] #paper-ground .fibers{opacity:.028;mix-blend-mode:screen}
+#app[data-theme=night] #dream-space{background:radial-gradient(ellipse at 67% 30%,#62516a60,transparent 54%),radial-gradient(ellipse at 18% 90%,#354d6d44,transparent 60%),linear-gradient(118deg,#282735,#322a3c 57%,#262c3e)}
+#app[data-theme=night] #dream-space:before{opacity:.19}
+#app[data-theme=night] #dream-space:after{opacity:.08}
+#app[data-theme=night]:after{opacity:.08;mix-blend-mode:screen}
+#app[data-theme=night] header,#app[data-theme=night] .editorial{mix-blend-mode:screen}
+#app[data-theme=night] .brand-art,#app[data-theme=night] .embroidered-art,#app[data-theme=night] .brand-art img{mix-blend-mode:normal}
+#app[data-theme=night] .brand-art img,#app[data-theme=night] .embroidered-art img{filter:grayscale(1) invert(1) contrast(2) brightness(1.6)}
+#app[data-theme=night] :is(.brand>span:not(.brand-art),.edition,.edition span,.eyebrow,.editorial p,.caption,.sub,.quiet-note small,#sound,#vessel-caption i,#count,.tools button,.process-heading,.process-stages,#print-status,.printer-label,#release-count,#scent-notes,#breeze-note){color:#cbc2d1}
+#app[data-theme=night] .quiet-note,#app[data-theme=night] #vessel-caption>span{color:#d6bfd6}
+#app[data-theme=night] .primary,#app[data-theme=night] .text-action{color:#e0d6e6;border-color:#9786a2}
+#app[data-theme=night] #progress i{color:#8c819a}
+#app[data-theme=night] #progress span{background:#73677e}
+#app[data-theme=night] .hairline{background:#b7a2bc}
+#app[data-theme=night] .volume-render{mix-blend-mode:screen;filter:brightness(.94);opacity:.76}
+#app[data-theme=night] .cobalt-render{mix-blend-mode:normal;opacity:.95;filter:saturate(.8) brightness(1.04)}
+#app[data-theme=night] .material-mask .volume-render{mix-blend-mode:normal;filter:none;opacity:1}
+#app[data-theme=night] .glass-glint{opacity:.63}
+#app[data-theme=night] #rig{filter:brightness(1.4)}
+#app[data-theme=night] .pendant img{filter:saturate(.8) brightness(1.1) drop-shadow(0 4px 10px #11131d40)}
+#app[data-theme=night] #toast{color:#f2e5f5;background:#2f2b3cea;padding:10px 18px;border-radius:20px}
+@media(prefers-reduced-motion:reduce){#dream-glitter{display:none}}

@@ -1,0 +1,44 @@
+/* The glass, cobalt acrylic and rubber share one restrained 2.5D set. */
+#viewport,#world,#mobile,#apparatus,#drag-layer,#hand{user-select:none;-webkit-user-select:none}
+#viewport img,#drag-layer img{-webkit-user-drag:none;user-select:none}
+#viewport ::selection{background:transparent}
+#mobile{left:660px}
+.pendant:focus:not(:focus-visible){outline:0}
+.glass-vessel{fill:url(#glass-body);stroke:#95a69e;stroke-width:1.35;stroke-opacity:.7}
+.glass-glint{fill:none;stroke:#fffef9;stroke-width:2.4;stroke-linecap:round;opacity:.75}
+#collection-connection{opacity:1}
+#glass-extension{opacity:1;transition:none}
+[data-phase=observe] #glass-extension,[data-phase=collect] #glass-extension{opacity:1}
+/* Camera framing, not an opacity seam, separates the stations. */
+#release-connection{visibility:visible!important}
+#release-station{visibility:visible!important}
+.blue-apparatus{clip-path:none;filter:none;opacity:1;overflow:hidden}
+#squeeze-bulb{left:800px;top:170px;width:150px;height:285px}
+.bulb-image{background:none;filter:none;transform-origin:50% 8%}
+#squeeze-bulb:hover .bulb-image{filter:brightness(1.08)}
+.pressed .bulb-image{transform:scale(.76,1.04);transition:transform .18s}
+.bulb-hint{top:98%;font-size:17px}
+.flow-bead{fill:var(--essence);stroke:#fffdf5;stroke-width:1.3}
+.process-route{stroke-width:3.4;stroke:var(--essence);filter:none}
+.process-bubble{fill:#fffef97a;stroke:var(--essence);stroke-width:1.2;animation:none!important}
+.steam-wisp{fill:none;stroke:#a9b3a4;stroke-width:3.5;stroke-linecap:round;filter:blur(.7px)}
+#falling-drop{animation:none!important;transition:none}
+#bubbles,#heat-halo,#receiver-liquid,#essence-pool{transition:opacity .35s}
+.process-stages span{transition:color .6s}
+.process-stages .active{color:#89769b;font-weight:600}
+#card-printer{top:72px}
+.printer-face{background:linear-gradient(#edeee6,#c4cac0 55%,#e4e7db);box-shadow:0 2px 3px #565e4d20,inset 0 2px 1px #fffdf6}
+[data-phase=collect] .editorial{left:53%;top:23%;width:225px;max-width:225px}
+[data-phase=collect] h1#title{width:225px;min-height:120px}
+[data-phase=collect] .editorial p{font-size:14px;max-width:195px}
+[data-phase=observe] .quiet-note{right:4%;bottom:18%}
+@media(max-width:700px){
+ [data-phase=collect] .editorial{left:6%;top:18%;width:230px;max-width:230px}
+ [data-phase=collect] h1#title{width:230px;min-height:120px}
+ [data-phase=collect] .editorial p{font-size:13px;max-width:185px}
+ #vessel-caption>span{font-size:25px}
+ [data-phase=release] #card-printer{left:2450px;top:670px}
+ .bulb-hint{font-size:25px}
+ .set-labels{font-size:18px}
+}
+html,body,#app,#viewport{overflow:clip}

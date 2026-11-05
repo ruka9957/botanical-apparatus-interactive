@@ -1,0 +1,32 @@
+/* Four carefully framed stations in one continuous horizontal set. */
+body{display:flex;justify-content:center}
+#app{width:min(100%,172vh);flex:0 0 auto}
+.pendant:focus,.pendant:focus-visible{outline:none!important;box-shadow:none!important}
+.pendant:focus-visible img{filter:saturate(.9) contrast(.98) drop-shadow(0 0 5px #8b7aa366)}
+#mobile{top:65px}
+[data-phase=collect] .editorial{left:6%;top:17%;width:250px;max-width:250px}
+[data-phase=collect] h1#title{width:250px;min-height:125px;margin:8px 0}
+[data-phase=collect] .editorial p,[data-phase=collect] .hairline,[data-phase=collect] .caption{display:none}
+[data-phase=collect] #breeze-note{display:none}
+.glass-vessel{stroke:#718f94;stroke-opacity:.56;stroke-width:1.8;filter:drop-shadow(1px 2px 1px #6b92901a)}
+.vessel-volume{pointer-events:none}
+.render-fallback{opacity:0;pointer-events:none}
+.volume-render{opacity:.9;mix-blend-mode:multiply;filter:brightness(1.06);pointer-events:none}
+.cobalt-render{opacity:.94;mix-blend-mode:normal;filter:saturate(.78) brightness(1.035)}
+.material-mask{mask-type:alpha}
+.material-mask .volume-render{opacity:1;mix-blend-mode:normal;filter:none}
+.glass-glint{stroke-width:3.1;opacity:.86}
+.blue-apparatus .glass-vessel{stroke-opacity:.75}
+#glass-extension,#release-station,#release-connection{opacity:1;visibility:visible;transition:none}
+#process-panel{top:10%;bottom:auto;left:52.5%;width:43%}
+[data-phase=distilling] .editorial,[data-phase=distilled] .editorial{top:18%}
+[data-phase=release] .editorial{top:18%}
+@media(min-width:1700px){[data-phase=collect] .editorial{width:290px;max-width:290px}[data-phase=collect] h1#title{width:290px;min-height:145px}}
+@media(max-width:700px){
+ [data-phase=collect] .editorial{left:6%;top:18%;width:230px;max-width:230px}
+ [data-phase=collect] h1#title{width:230px;min-height:118px}
+ #process-panel{top:auto;bottom:15%;left:50%;width:85vw}
+ [data-phase=distilling] .editorial,[data-phase=distilled] .editorial{top:19%}
+ [data-phase=release] .editorial{top:17%}
+ #vessel-caption i{text-wrap:balance}
+}
