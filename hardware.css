@@ -1,0 +1,15 @@
+#hardware-open{position:absolute;right:0;top:52px;display:block;border:1px solid #9b9d86;border-radius:3px;padding:5px 12px;background:#f3f2eb;color:#515846;font:12px/1.5 sans-serif;letter-spacing:1px;cursor:pointer;pointer-events:auto}
+#hardware-dialog{box-sizing:border-box;width:min(480px,calc(100vw - 32px));max-height:85dvh;overflow:auto;padding:26px;border:1px solid #a2a38e;border-radius:8px;background:#f3f2eb;color:#343c30;font:14px/1.7 sans-serif;box-shadow:0 15px 70px #18231633}
+#hardware-dialog::backdrop{background:#26312766}
+#hardware-dialog h2{margin:0 30px 12px 0;font-size:20px}
+#hardware-dialog p{margin:12px 0;font:inherit;color:inherit;letter-spacing:0}
+#hardware-dialog label{display:block;margin:12px 0}
+#hardware-dialog input[type=text]{box-sizing:border-box;display:block;width:100%;padding:10px;border:1px solid #9b9d86;background:#fffef7;border-radius:4px;font:inherit}
+#hardware-dialog button{padding:8px 12px;border:1px solid #989d88;border-radius:4px;background:#e5e8d9;color:#343c30;font:inherit;cursor:pointer}
+#hardware-dialog button:disabled{opacity:.5;cursor:wait}
+#hardware-dialog button:focus-visible,#hardware-open:focus-visible{outline:3px solid #708454;outline-offset:3px}
+#hardware-dialog #hardware-close{position:absolute;right:15px;top:15px;padding:1px 9px;background:transparent}
+#hardware-dialog .hardware-tests{display:flex;gap:8px;flex-wrap:wrap}
+#hardware-dialog #hardware-stop{background:#f1dace}
+#hardware-dialog [role=status]{min-height:3.4em;padding:10px;background:#e9ebdf;border-radius:4px;overflow-wrap:anywhere}
+@media(max-width:900px){#hardware-open{top:6px;padding:6px 8px;font-size:11px}}

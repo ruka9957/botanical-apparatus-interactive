@@ -1,3 +1,8 @@
+import {mountHardwarePanel} from './hardware-panel.js';
+import {channelMask} from './hardware-controller.js';
+import {loadCardRules} from './card-composer.js';
+import {cardPlantIds} from './card-selection.js';
+import {resolveScentCard} from './resolve-scent-card.js';
 import {mountDream} from './dream.js';
 import {mountPaper} from './paper.js';
 import {embroideredText} from './embroidery.js';
@@ -16,12 +21,20 @@ const camera={x:0,y:0,scale:1},target={x:0,y:0,scale:1};let cameraMove=null,layo
 mountPaper();const dream=mountDream();$('#apparatus').innerHTML=apparatusMarkup();
 $('.brand').innerHTML=embroideredText(['Botanical Apparatus'],{brand:true})+'<span>植物制香 · 交互装置</span>';
 const chime=new WindChime(botanicals),nodes=chime.nodes,soundscape=new Soundscape(),distillation=new Distillation(),printer=new CardPrinter(reduced);
+const hardware=mountHardwarePanel();
+async function selectedCard(assets){return resolveScentCard(cardPlantIds(assets),await loadCardRules(),{allowSingleForDebug:true});}
 const releaseStation=new ScentRelease(count=>{
  $('#release-count').textContent='第 '+count+' 阵气味想象';
  $('#foot-sub').textContent='第 '+count+' 次闻香 · 卡片正在右侧留存';
  $('#instruction').textContent='薄雾散去，气味的想象依然停留。';
  printer.print(state.selected.map(id=>botanicals[id].asset));
-},soundscape,reduced);
+},soundscape,reduced,async()=>{
+ const assets=state.selected.map(id=>botanicals[id].asset);
+ const card=await selectedCard(assets);
+ if(state.phase!=='release'||assets.join('|')!==state.selected.map(id=>botanicals[id].asset).join('|'))throw new Error('选择已变化，请重新挤压气囊');
+ await hardware.spray(card.channelKey);
+ return channelMask(card.channelKey);
+},error=>toast(error.message));
 let last=0,toastTimer,sound=true,lastHover=0,lastPointer=null,transitionTimer;
 const smooth=x=>{x=Math.max(0,Math.min(1,x));return x*x*x*(10+x*(-15+6*x));};
 function tone(power=.2){soundscape.chime(power);}
@@ -86,6 +99,7 @@ const copy={
  release:{chapter:'04 / RELEASE & ARCHIVE',title:['An invisible','connection.'],intro:'轻轻挤压气囊，让薄雾升起。<br>同时，一张气味人格卡缓缓出纸。',instruction:'挤压气囊 · 释放薄雾与卡片'}
 };
 function phase(p){
+ releaseStation.generation++;
  clearArmed();cancelDrag();state.spin=null;state.distillPending=false;state.phase=p;$('#app').dataset.phase=p;
  $('#vessel-caption').inert=p!=='collect';$('#vessel-caption').setAttribute('aria-hidden',String(p!=='collect'));$('#mobile').inert=!['observe','collect'].includes(p);$('#collector').setAttribute('tabindex',p==='collect'?'0':'-1');$('#release-station').inert=p!=='release';
  const c=copy[p];$('#chapter').textContent=c.chapter;$('#title').innerHTML=embroideredText(c.title);$('#intro').innerHTML=innerWidth<=900&&p==='release'?'挤压气囊，让香气与人格卡一起出现。':c.intro;$('#instruction').textContent=innerWidth<=900&&p==='collect'?'拖入瓶口，或点选植物后再点采集瓶':c.instruction;
@@ -98,7 +112,13 @@ function phase(p){
  if(p==='release'){
   printer.prepare(state.selected.map(id=>botanicals[id].asset));
   const mask=state.selected.reduce((m,id)=>m|botanicals[id].channel,0);$('#scent-name').textContent=scentResults[mask]||'A Botanical Reverie';$('#scent-notes').textContent=state.selected.map(id=>botanicals[id].zh).join(' · ');
-  document.querySelectorAll('.scent-port').forEach((port,i)=>port.classList.toggle('active',!!(mask&(1<<i))));
+  document.querySelectorAll('.scent-port').forEach(port=>port.classList.remove('active'));
+  const assets=state.selected.map(id=>botanicals[id].asset);
+  selectedCard(assets).then(card=>{
+   if(state.phase!=='release'||assets.join('|')!==state.selected.map(id=>botanicals[id].asset).join('|'))return;
+   const actualMask=channelMask(card.channelKey);
+   document.querySelectorAll('.scent-port').forEach((port,i)=>port.classList.toggle('active',!!(actualMask&(1<<i))));
+  }).catch(error=>toast(error.message));
  }
  moveCamera(p==='release'?2850:2350);if(layout.small)window.scrollTo({top:0,behavior:'instant'});state.transition=true;clearTimeout(transitionTimer);transitionTimer=setTimeout(()=>state.transition=false,reduced?20:2350);update();
 }

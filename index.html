@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f3f2eb"><title>Botanical Apparatus — 植物制香</title><meta name="description" content="一座随风而动的植物园，一段玻璃中的气味想象。"><link rel="preload" href="assets/hero-observe.png" as="image"><link rel="preload" href="assets/title-stitched.png" as="image"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="revision.css"><link rel="stylesheet" href="stage-five.css"><link rel="stylesheet" href="stage-six.css"><link rel="stylesheet" href="stage-seven.css"><link rel="stylesheet" href="stage-eight.css"><link rel="stylesheet" href="dream.css"><link rel="stylesheet" href="responsive.css"></head>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f3f2eb"><title>Botanical Apparatus — 植物制香</title><meta name="description" content="一座随风而动的植物园，一段玻璃中的气味想象。"><link rel="preload" href="assets/hero-observe.png" as="image"><link rel="preload" href="assets/title-stitched.png" as="image"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="revision.css"><link rel="stylesheet" href="stage-five.css"><link rel="stylesheet" href="stage-six.css"><link rel="stylesheet" href="stage-seven.css"><link rel="stylesheet" href="stage-eight.css"><link rel="stylesheet" href="dream.css"><link rel="stylesheet" href="responsive.css"><link rel="stylesheet" href="hardware.css"></head>
 <body><main id="app" data-phase="observe" data-version="v10-dream">
-<header><a class="brand" href="./" aria-label="重新开始">Botanical Apparatus<span>植物制香 · 交互装置</span></a><div class="edition">AN OLFACTORY STUDY<br><span>FOR A MORE TENDER WORLD</span></div></header>
+<header><a class="brand" href="./" aria-label="重新开始">Botanical Apparatus<span>植物制香 · 交互装置</span></a><div class="edition">AN OLFACTORY STUDY<br><span>FOR A MORE TENDER WORLD</span></div><button id="hardware-open" type="button" aria-haspopup="dialog">连接装置</button></header>
 <section class="editorial"><div class="eyebrow" id="chapter">01 / OBSERVE</div><h1 id="title"></h1><p id="intro">一阵微风，一座悬浮的植物园。<br>轻轻拨动，让气味的想象开始流转。</p><div class="hairline"></div><span class="caption" id="instruction">按住装置，左右拨动</span><div id="breeze-note" aria-hidden="true"><span></span> A SMALL BREEZE PASSES</div></section>
 <div id="viewport" aria-label="植物风铃交互场景"><div id="world"><div id="mobile"><svg id="rig" viewBox="0 0 640 700" aria-hidden="true"></svg><div id="pendants"></div><div id="moth" aria-hidden="true"></div></div><div id="apparatus"></div></div></div>
 <div class="quiet-note">Collected by<br>the breeze.<small>AN IMAGINED HERBARIUM</small></div>
@@ -12,7 +12,27 @@
 <aside id="scent-result" hidden><span class="eyebrow">YOUR BOTANICAL COMPOSITION</span><strong id="scent-name"></strong><p id="scent-notes"></p><span id="release-count">按住并松开黑色气囊，让想象缓缓舒展。</span></aside>
 <footer><div class="footnote"><span class="dot"></span> A STUDY IN SCENT & SENTIMENT<span class="sub" id="foot-sub">植物、器物，与不可见之物</span></div><div id="progress"><b>01</b><span></span><i>02</i><span></span><i>03</i></div><div class="footer-actions"><button class="text-action" id="back" hidden>← 返回采集</button><button class="primary" id="begin">开始采集 · BEGIN <span>↗</span></button><button class="primary" id="distill" aria-disabled="true" hidden>开始制香 · DISTILL <span>→</span></button><button class="primary" id="proceed" hidden>进入第四幕 · 闻香 <span>→</span></button><button class="primary" id="restart" hidden>再做一份 · COMPOSE AGAIN <span>↺</span></button></div></footer>
 <div id="toast" role="status"></div><button id="sound" aria-label="关闭背景音乐" aria-pressed="true">MUSIC ON <span>⌁</span></button>
-</main><script type="module" src="app.js"></script></body></html>
+</main>
+<dialog id="hardware-dialog" aria-labelledby="hardware-title">
+ <button id="hardware-close" type="button" aria-label="关闭装置面板">×</button>
+ <h2 id="hardware-title">连接气味装置</h2>
+ <p>电脑与 ESP32 连接同一 Wi-Fi。首次连接时，请允许浏览器访问本地网络。</p>
+ <form>
+  <label for="hardware-address">ESP32 的 IP 地址<input id="hardware-address" type="text" inputmode="decimal" value="192.168.31.174" required autocomplete="off"></label>
+  <label><input id="hardware-confirm" type="checkbox"> 我已确认三个红色雾化器都没有喷雾</label>
+  <button id="hardware-connect" type="submit">连接并准备喷雾</button>
+ </form>
+ <p>单路测试：每次约5秒，结束后再测下一路。</p>
+ <div class="hardware-tests">
+  <button type="button" data-test-channel="A">A · 红4</button>
+  <button type="button" data-test-channel="B">B · 蓝5</button>
+  <button type="button" data-test-channel="C">C · 红6</button>
+  <button type="button" data-test-channel="D">D · 红7</button>
+ </div>
+ <p role="status" aria-live="polite">网页演示 · 尚未连接装置</p>
+ <div class="hardware-tests"><button id="hardware-stop" type="button">停止本次喷雾</button><button id="hardware-demo" type="button">切换为网页演示</button></div>
+ <p>红色模块靠按键切换开关。若状态不一致，先关闭所有雾化器和 ESP32 的电源，再重新上电；确认没有喷雾后重新连接。不要在运行中手动按红色模块。</p>
+</dialog><script type="module" src="app.js"></script></body></html>
 
 
 
